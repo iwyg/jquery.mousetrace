@@ -1,0 +1,7 @@
+.mousetrace {
+  width: 20px; height: 20px; color: #fff; position: absolute; display: block; padding: 20px; background: rgba(20, 20, 20, 0.5);
+  -webkit-border-radius: 30px; -moz-border-radius: 30px; border-radius: 30px;
+  -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box;
+  -webkit-transition: all 0.8s cubic-bezier(0, 1, 0, 1) 0s; -moz-transition: all 0.8s cubic-bezier(0, 1, 0, 1) 0s; -ms-transition: all 0.8s cubic-bezier(0, 1, 0, 1) 0s; -o-transition: all 0.8s cubic-bezier(0, 1, 0, 1) 0s;
+  transition: all 0.8s cubic-bezier(0, 1, 0, 1) 0s;  
+}
