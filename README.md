@@ -17,15 +17,15 @@ The mousetrace plugin lets you display additional information on your website as
 ## default setup
 
 	selector : '',			// {String} selector expression provided as single statemanet or a comma seperated list
-	staticContent : '',	// {String} or HTMLElement or jQuery Object that is displayed as tatic content on the mousetracer
-	content : [			// define an array of optional triggers, that will envoke the tracer to display new content and add additional classnames
+	staticContent : '',		// {String} or HTMLElement or jQuery Object that is displayed as tatic content on the mousetracer
+	content : [				// define an array of optional triggers, that will envoke the tracer to display new content and add additional classnames
 		{
 			trigger : '',	// {String} selector expression provided as single statemanet or a comma seperated list
 			content : '',	// {String} or {Function} returning {String}
 			addClass : ''	// {String} classname to be added	
 		}
 	],
-	correctLeft:20,		// correction value relative to cursor position
+	correctLeft:20,			// correction value relative to cursor position
 	correctTop:20,			// correction value relative to cursor position
 	fadeEasing : 'swing'	// default easing. jQuery by default provides 'linear' and 'swing'. Add more easing methods by including the [jquery.easing](http://gsgd.co.uk/sandbox/jquery/easing/) plugin from GSGD
 
@@ -68,4 +68,4 @@ The mousetrace plugin lets you display additional information on your website as
 
 ## teardown
 
-removeing the plugin instance is easy. Just call `$(this).data('mousetrace').teardown();` and you’re done.
+removeing the plugin instance is easy. Just call `$(body).data('mousetrace').teardown();` and you’re done.

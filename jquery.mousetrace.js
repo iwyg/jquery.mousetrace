@@ -1,3 +1,54 @@
+/*
+ *\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ *\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+ *
+ * jquery.mousetrace.js - display information on the fly
+ * 
+ *
+ * Copyright 2011, Thomas Appel, http://thomas-appel.com, mail(at)thomas-appel.com
+ * dual licensed under MIT and GPL license
+ * http://dev.thomas-appel.com/licenses/mit.txt
+ * http://dev.thomas-appel.com/licenses/gpl.txt
+ * 
+ * Features:
+ * --------------------------------------------------------------------------------------------
+ * - The mousetrace plugin lets you display additional information on your website as a 
+ *   fancy mousetracer.
+ * --------------------------------------------------------------------------------------------
+ * Options
+ * --------------------------------------------------------------------------------------------
+ *
+ *	selector : '',			// {String} selector expression provided as single statemanet or a comma seperated list
+ *	staticContent : '',		// {String} or HTMLElement or jQuery Object that is displayed as tatic content on the mousetracer
+ *	content : [				// define an array of optional triggers, that will envoke the tracer to display new content and add 
+ *								additional classnames
+ *		{
+ *			trigger : '',	// {String} selector expression provided as single statemanet or a comma seperated list
+ *			content : '',	// {String} or {Function} returning {String}
+ *			addClass : ''	// {String} classname to be added	
+ *		}
+ *	],
+ *	correctLeft:20,			// correction value relative to cursor position
+ *	correctTop:20,			// correction value relative to cursor position
+ *	fadeEasing : 'swing'	// default easing. jQuery by default provides 'linear' and 'swing'. Add more easing methods by 
+ *	                           including the jquery.easing http://gsgd.co.uk/sandbox/jquery/easing/) plugin from GSGD
+ *	                           
+ * --------------------------------------------------------------------------------------------
+ * changelog:
+ * --------------------------------------------------------------------------------------------
+ * - b1.1
+ * --------------------------------------------------------------------------------------------
+ *		- fixed issue: forgott to set initial static Content
+ *		- fixed issue: tearDown method wouldn't remove plugin data
+ * --------------------------------------------------------------------------------------------
+ * - b1.0
+ * --------------------------------------------------------------------------------------------
+ *		- initial release
+ * -------------------------------------------------------------------------------------------- 
+ * @author Thomas Appel
+ * @version b1.1
+ * -------------------------------------------------------------------------------------------- 
+ */
 (function ($, global) {
 	var doc = global.document,
 		body,
@@ -164,6 +215,11 @@
 		init: function (o) {
 			this.options = o;			
 			this.tracer = $('<div/>').addClass(this.name);			
+			
+			if ( !!this.options.staticContent ) {
+				this.tracer.html(this.options.staticContent);
+			}
+			
 			this.bind();			
 		},
 		
@@ -299,7 +355,7 @@
 			this.unbind();
 			this.tracer.empty().remove();
 			
-			$.removeData(this.name);
+			body.removeData(this.name);
 		},
 		
 		unbind: function () {
@@ -334,7 +390,6 @@
 			},
 			o = $.extend({},defaults, options);
 			body = $(doc.body);
-
 			body.data(MouseTrace.prototype.name, new MouseTrace(o));
 		return this;
 	};
