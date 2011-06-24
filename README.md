@@ -18,7 +18,7 @@ The mousetrace plugin lets you display additional information on your website as
 
 	selector : '',			// {String} selector expression provided as single statemanet or a comma seperated list
 	staticContent : '',		// {String} or HTMLElement or jQuery Object that is displayed as tatic content on the mousetracer
-	content : [				// define an array of optional triggers, that will envoke the tracer to display new content and add additional classnames
+	contents : [				// define an array of optional triggers, that will envoke the tracer to display new content and add additional classnames
 		{
 			trigger : '',	// {String} selector expression provided as single statemanet or a comma seperated list
 			content : '',	// {String} or {Function} returning {String}
@@ -36,7 +36,7 @@ The mousetrace plugin lets you display additional information on your website as
 		$(this).mousetrace({
 			selector : '.show-info',		
 			staticContent : 'Hello World',	
-			content : [			
+			contents : [			
 				{
 					trigger : 'a.info',	
 					/*
@@ -69,3 +69,19 @@ The mousetrace plugin lets you display additional information on your website as
 ## teardown
 
 removeing the plugin instance is easy. Just call `$(body).data('mousetrace').teardown();` and you’re done.
+
+## changelog
+
+### b1.2
+
+- renamed options property from content to contents, makes more sense
+
+### b1.1
+
+- fixed issue: forgott to set initial static Content
+- fixed issue: tearDown method wouldn't remove plugin data
+ 
+### b1.0
+ 
+- initial release
+ 

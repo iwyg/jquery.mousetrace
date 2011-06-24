@@ -20,7 +20,7 @@
  *
  *	selector : '',			// {String} selector expression provided as single statemanet or a comma seperated list
  *	staticContent : '',		// {String} or HTMLElement or jQuery Object that is displayed as tatic content on the mousetracer
- *	content : [				// define an array of optional triggers, that will envoke the tracer to display new content and add 
+ *	contents : [				// define an array of optional triggers, that will envoke the tracer to display new content and add 
  *								additional classnames
  *		{
  *			trigger : '',	// {String} selector expression provided as single statemanet or a comma seperated list
@@ -35,6 +35,10 @@
  *	                           
  * --------------------------------------------------------------------------------------------
  * changelog:
+ * --------------------------------------------------------------------------------------------
+ * - b1.2
+ * --------------------------------------------------------------------------------------------
+ *		- renamed options property from content to contents, makes more sense
  * --------------------------------------------------------------------------------------------
  * - b1.1
  * --------------------------------------------------------------------------------------------
@@ -227,8 +231,8 @@
 			var i,l = this.options.content.length;
 				
 			for (i=0;i<l;i++) {
-				body.delegate(this.options.content[i].trigger, events.M_ENTER, this.options.content[i], $.proxy(this.getContent, this))
-				.delegate(this.options.content[i].trigger, events.M_LEAVE, this.options.content[i], $.proxy(this.clearContent, this));				
+				body.delegate(this.options.contents[i].trigger, events.M_ENTER, this.options.contents[i], $.proxy(this.getContent, this))
+				.delegate(this.options.contents[i].trigger, events.M_LEAVE, this.options.contents[i], $.proxy(this.clearContent, this));				
 			}
 			this.tracer.bind(events.M_ENTER, function(e){
 				e.preventDefault();
@@ -359,11 +363,11 @@
 		},
 		
 		unbind: function () {
-			var i,l = this.options.content.length;
+			var i = 0, l = this.options.content.length;
 				
-			for (i=0;i<l;i++) {
-				body.undelegate(this.options.content[i].trigger, events.M_ENTER)
-				.undelegate(this.options.content[i].trigger, events.M_LEAVE);				
+			for (; i < l; i++) {
+				body.undelegate(this.options.contents[i].trigger, events.M_ENTER)
+				.undelegate(this.options.contents[i].trigger, events.M_LEAVE);				
 			}	
 			body.undelegate(this.options.selector, events.M_ENTER)	
 			.undelegate(this.options.selector, events.M_LEAVE)
@@ -377,7 +381,7 @@
 		var defaults = {
 				selector : '',
 				staticContent : '',	
-				content : [
+				contents : [
 					{
 						trigger : '', // {String} classname
 						content : '', // {String} or {Function} returning {String}
