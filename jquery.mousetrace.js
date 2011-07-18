@@ -395,8 +395,7 @@
 		}
 	});
 	$.fn.mousetrace = function (options) {
-		var o = $.extend({}, defaults, options);
-		body = $(doc.body);
+		var body = $(doc.body);
 		body.data(MouseTrace.prototype.name, new MouseTrace(options));
 		return this;
 	};
